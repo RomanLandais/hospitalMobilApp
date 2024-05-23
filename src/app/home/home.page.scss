@@ -1,27 +1,37 @@
-#container {
+.logo_container {
+  background-image: url(../../assets/icon/logoImage.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+form {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.text-danger {
+  color: red;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.sign.in {
+  padding: 20px;
+  /* background-color: #f9f9f9; */
 }
 
-#container a {
-  text-decoration: none;
+.sign.in h4 {
+  margin-bottom: 20px;
+}
+
+.sign.in .form-control {
+  margin-bottom: 15px;
+}
+
+.sign.in .text-danger {
+  margin-top: 5px;
+}
+
+.sign.in button[type="submit"] {
+  width: 15%;
+  color: white;
+  background-color: #5784ba;
 }
