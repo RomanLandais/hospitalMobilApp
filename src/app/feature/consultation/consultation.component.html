@@ -1,0 +1,139 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <!--   Avis Médecin -->
+  <div class="form-container">
+    <form [formGroup]="avisForm" (ngSubmit)="onAvisSubmit()" class="avis-form">
+      <h4>Ajouter un Avis</h4>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Titre de l'avis</ion-label>
+        <ion-input
+          type="text"
+          formControlName="libelle"
+          placeholder="donnez un titre"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date</ion-label>
+        <br />
+        <ion-datetime
+          presentation="date-time"
+          [preferWheel]="true"
+          formControlName="date"
+          required
+        ></ion-datetime>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea
+          formControlName="description"
+          placeholder="écrivez votre avis sur le patient"
+          required
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Nom du médecin</ion-label>
+        <ion-input
+          type="text"
+          formControlName="medecinNom"
+          placeholder="Votre nom"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Prenom du médecin</ion-label>
+        <ion-input
+          type="text"
+          formControlName="medecinPrenom"
+          placeholder="Votre prénom"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-button type="submit" expand="block" [disabled]="avisForm.invalid">
+        Enregistrer l'avis
+      </ion-button>
+    </form>
+  </div>
+
+  <!--   Prescription Médecin -->
+  <div class="form-container">
+    <form
+      [formGroup]="prescriptionForm"
+      (ngSubmit)="onPrescriptionSubmit()"
+      class="prescription-form"
+    >
+      <h4>Ajouter une Prescription</h4>
+      <ion-item class="input-container">
+        <ion-label position="stacked">Médicament</ion-label>
+        <ion-input
+          type="text"
+          formControlName="medicament"
+          placeholder="Nom des médicaments"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item class="input-container">
+        <ion-label position="stacked">Posologie</ion-label>
+        <ion-input
+          type="text"
+          formControlName="posologie"
+          placeholder="Posologie"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date début traitement</ion-label>
+        <br />
+        <ion-datetime-button datetime="datetimeDebut"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetimeDebut"
+              presentation="date"
+              [value]="currentDate"
+              formControlName="dateDebut"
+              required
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+        <br />
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date fin traitement</ion-label>
+        <br />
+        <ion-datetime-button datetime="datetimeFin"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetimeFin"
+              presentation="date"
+              [value]="endDate"
+              formControlName="dateFin"
+              required
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+        <br />
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-checkbox formControlName="soigne">Soigné ?</ion-checkbox>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="prescriptionForm.invalid"
+      >
+        Enregistrer la prescription
+      </ion-button>
+    </form>
+  </div>
+</ion-content>
