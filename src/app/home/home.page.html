@@ -12,6 +12,7 @@
           >Email</ion-label
         >
         <ion-input
+          class="input-container"
           type="email"
           formControlName="email"
           id="inputEmail2"
@@ -35,6 +36,7 @@
           >Mot de passe</ion-label
         >
         <ion-input
+          class="input-container"
           type="password"
           formControlName="password"
           id="inputPassword2"
@@ -60,75 +62,3 @@
     </form>
   </div>
 </ion-content>
-
-<!-- <ion-content class="logo" [fullscreen]="true">
-  <div class="logo_container">
-    <h4>Connexion</h4>
-  </div>
-
-  <form
-    [formGroup]="signInForm"
-    (ngSubmit)="onSignInSubmit()"
-    class="sign in novalidate"
-  >
-    <div class="row mb-3">
-      <label for="inputEmail2" class="col-sm-5 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input
-          type="email"
-          formControlName="email"
-          class="form-control"
-          id="inputEmail2"
-          required
-        />
-        <div
-          *ngIf="
-              signInForm.controls['email'].touched &&
-              signInForm.controls['email'].invalid
-            "
-          class="text-danger"
-        >
-          <div *ngIf="signInForm.controls['email'].errors?.['required']">
-            Email requis
-          </div>
-          <div *ngIf="signInForm.controls['email'].errors?.['email']">
-            Email n'est pas valide
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row mb-3">
-      <label for="inputPassword2" class="col-sm-5 col-form-label"
-        >Mot de passe</label
-      >
-      <div class="col-sm-10">
-        <input
-          type="password"
-          formControlName="password"
-          class="form-control"
-          id="inputPassword2"
-          required
-        />
-        <div
-          *ngIf="
-              signInForm.controls['password'].touched &&
-              signInForm.controls['password'].invalid
-            "
-          class="text-danger"
-        >
-          <div *ngIf="signInForm.controls['password'].errors?.['required']">
-            Mot de passe requis
-          </div>
-        </div>
-      </div>
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary"
-      [disabled]="signInForm.invalid"
-    >
-      Connexion
-    </button>
-  </form>
-</ion-content>
- -->

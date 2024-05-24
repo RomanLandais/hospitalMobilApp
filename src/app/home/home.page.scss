@@ -9,13 +9,19 @@ form {
   text-align: center;
 }
 
+.input-container {
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
 .text-danger {
   color: red;
 }
 
 .sign.in {
   padding: 20px;
-  /* background-color: #f9f9f9; */
 }
 
 .sign.in h4 {

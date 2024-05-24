@@ -7,6 +7,7 @@ import { TokenService } from '../../services/token.service';
 import { CommonModule } from '@angular/common';
 import { ServicesModule } from 'src/services/services.module';
 import { IonicModule } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomePage implements OnInit {
   constructor(
     private fb: FormBuilder,
     private comServerService: ComServiceService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class HomePage implements OnInit {
           // Récupérer l'identifiant de l'utilisateur depuis la réponse et le stocker dans le service
           const userId = response.userId;
           this.tokenService.setUserId(userId);
+
+          // Rediriger vers le composant ConsultationComponent après une connexion réussie
+
+          this.router.navigate(['/consultation']);
         },
 
         error: (error) => {
