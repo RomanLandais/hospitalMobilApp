@@ -1,0 +1,298 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div class="container-parent">
+    <!--   Définition patient -->
+
+    <div class="form-container">
+      <ion-list>
+        <ion-item>
+          <ion-select
+            placeholder="Sélectionner un patient"
+            interface="popover"
+            required
+            interface="popover"
+            [(ngModel)]="idUser"
+            #patientSelect="ngModel"
+            (ngModelChange)="onUserChange()"
+          >
+            <ion-select-option
+              *ngFor="let patient of nomsPatients"
+              [value]="patient.id"
+            >
+              {{ patient.displayName }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item
+          *ngIf="patientSelect.invalid && patientSelect.touched"
+          lines="none"
+        >
+          <ion-text color="danger" slot="end">
+            Veuillez sélectionner un patient.
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </div>
+
+    <!--   Définition stay -->
+
+    <div class="form-container">
+      <ion-list>
+        <ion-item>
+          <ion-select
+            placeholder="Sélectionner un séjour"
+            interface="popover"
+            required
+            interface="popover"
+            [(ngModel)]="idStay"
+            #staySelect="ngModel"
+          >
+            <ion-select-option *ngFor="let stay of dateStay" [value]="stay.id">
+              {{ stay.displayDate }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item *ngIf="staySelect.invalid && staySelect.touched" lines="none">
+          <ion-text color="danger" slot="end">
+            Veuillez sélectionner un séjour.
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <!--   Définition docteur -->
+  <div class="container-parent">
+    <div class="form-container">
+      <ion-list>
+        <ion-item>
+          <ion-select
+            placeholder="Sélectionner un médecin"
+            interface="popover"
+            required
+            interface="popover"
+            [(ngModel)]="idDoctor"
+            #doctorSelect="ngModel"
+          >
+            <ion-select-option
+              *ngFor="let doctor of nomsDoctors"
+              [value]="doctor.id"
+            >
+              Dr. {{ doctor.displayName }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item
+          *ngIf="doctorSelect.invalid && doctorSelect.touched"
+          lines="none"
+        >
+          <ion-text color="danger" slot="end">
+            Veuillez sélectionner un médecin.
+          </ion-text>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+  <!--   Avis Médecin -->
+  <div class="form-container">
+    <form [formGroup]="avisForm" (ngSubmit)="onAvisSubmit()" class="avis-form">
+      <h4>Ajouter un Avis</h4>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Titre de l'avis</ion-label>
+        <ion-input
+          type="text"
+          formControlName="titre"
+          placeholder="donnez un titre"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="avisForm.get('titre')?.invalid && avisForm.get('titre')?.touched"
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner un titre.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date</ion-label>
+        <br />
+        <ion-datetime
+          presentation="date-time"
+          [preferWheel]="true"
+          formControlName="date"
+          required
+        ></ion-datetime>
+      </ion-item>
+      <ion-item
+        *ngIf="avisForm.get('date')?.invalid && avisForm.get('date')?.touched"
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner une date.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Description</ion-label>
+        <ion-textarea
+          formControlName="description"
+          placeholder="écrivez votre avis sur le patient"
+          required
+        ></ion-textarea>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          avisForm.get('description')?.invalid &&
+          avisForm.get('description')?.touched
+        "
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner une description.
+        </ion-text>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="
+          avisForm.invalid ||
+          !patientSelect.valid ||
+          !staySelect.valid ||
+          !doctorSelect.valid
+        "
+      >
+        Enregistrer l'avis
+      </ion-button>
+    </form>
+  </div>
+
+  <!--   Prescription Médecin -->
+  <div class="form-container">
+    <form
+      [formGroup]="prescriptionForm"
+      (ngSubmit)="onPrescriptionSubmit()"
+      class="prescription-form"
+    >
+      <h4>Ajouter une Prescription</h4>
+      <ion-item class="input-container">
+        <ion-label position="stacked">Médicament</ion-label>
+        <ion-input
+          type="text"
+          formControlName="medicament"
+          placeholder="Nom des médicaments"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          prescriptionForm.get('medicament')?.invalid &&
+          prescriptionForm.get('medicament')?.touched
+        "
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner un medicament.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Posologie</ion-label>
+        <ion-input
+          type="text"
+          formControlName="posologie"
+          placeholder="Posologie"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item
+        *ngIf="
+          prescriptionForm.get('posologie')?.invalid &&
+          prescriptionForm.get('posologie')?.touched
+        "
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner une Posologie.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date début traitement</ion-label>
+        <br />
+        <ion-datetime-button datetime="datetimeDebut"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetimeDebut"
+              presentation="date"
+              [value]="currentDate"
+              formControlName="dateDebut"
+              required
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+        <br />
+      </ion-item>
+      <ion-item
+        *ngIf="
+          prescriptionForm.get('dateDebut')?.invalid &&
+          prescriptionForm.get('dateDebut')?.touched
+        "
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner une date.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-label position="stacked">Date fin traitement</ion-label>
+        <br />
+        <ion-datetime-button datetime="datetimeFin"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime
+              id="datetimeFin"
+              presentation="date"
+              [value]="endDate"
+              formControlName="dateFin"
+              required
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+        <br />
+      </ion-item>
+      <ion-item
+        *ngIf="
+          prescriptionForm.get('dateFin')?.invalid &&
+          prescriptionForm.get('dateFin')?.touched
+        "
+        lines="none"
+      >
+        <ion-text color="danger" slot="end">
+          Veuillez sélectionner une date.
+        </ion-text>
+      </ion-item>
+
+      <ion-item class="input-container">
+        <ion-checkbox formControlName="soigne">Soigné ?</ion-checkbox>
+      </ion-item>
+
+      <ion-button
+        type="submit"
+        expand="block"
+        [disabled]="
+          prescriptionForm.invalid ||
+          !patientSelect.valid ||
+          !staySelect.valid ||
+          !doctorSelect.valid
+        "
+      >
+        Enregistrer la prescription
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

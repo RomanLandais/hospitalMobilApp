@@ -1,0 +1,26 @@
+.container-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.avis-form,
+.prescription-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.input-container {
+  margin-bottom: 15px;
+}

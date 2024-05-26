@@ -1,0 +1,43 @@
+.logo_container {
+  background-image: url(../../assets/icon/logoImage.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+form {
+  text-align: center;
+}
+
+.input-container {
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.text-danger {
+  color: red;
+}
+
+.sign.in {
+  padding: 20px;
+}
+
+.sign.in h4 {
+  margin-bottom: 20px;
+}
+
+.sign.in .form-control {
+  margin-bottom: 15px;
+}
+
+.sign.in .text-danger {
+  margin-top: 5px;
+}
+
+.sign.in button[type="submit"] {
+  width: 15%;
+  color: white;
+  background-color: #5784ba;
+}
