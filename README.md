@@ -20,8 +20,8 @@ L'architecture de base ne renvoyait pas sur le bon chemin et l'utilisation de ch
 
 - pour déployer le projet, installer les plates-formes mobiles, localement, nous avons fait le choix d'utiliser capacitor.
 Installer capacitor avec la commande du terminal : npm install @capacitor/core @capacitor/cli
-puis pour Android : ionic capacitor add android
-pour IOS : ionic capacitor add ios
+- puis pour Android : ionic capacitor add android
+- pour IOS : ionic capacitor add ios
 
 - construire l'application pour générer les fichiers nécessaires à la synchronisation avec Capacitor : ionic build
 
